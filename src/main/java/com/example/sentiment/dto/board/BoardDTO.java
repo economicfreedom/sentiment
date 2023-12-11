@@ -16,8 +16,9 @@ public class BoardDTO {
 
     private int postId;
     private String title;
+    private String content;
     private String author;
-    private Timestamp createdAt;
+    private String createdAt;
 
 
 }

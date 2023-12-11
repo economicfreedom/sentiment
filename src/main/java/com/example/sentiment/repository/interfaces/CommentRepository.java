@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CommentRepository extends CRUDRepositoryInterface<CommentDTO,Comment> {
     @Override
-    int create(CommentDTO commentDTO);
+    int create(Comment commentDTO);
 
     @Override
     Comment findById(int id);

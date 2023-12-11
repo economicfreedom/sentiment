@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface BoardRepository extends CRUDRepositoryInterface<BoardDTO, Board> {
     @Override
-    int create(BoardDTO boardDTO);
+    int create(Board board);
 
     @Override
     Board findById(int id);

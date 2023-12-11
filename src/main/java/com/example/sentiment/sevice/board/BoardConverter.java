@@ -6,16 +6,41 @@ import com.example.sentiment.dto.board.BoardDTO;
 import com.example.sentiment.repository.model.Board;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 @Service
-public class BoardConverter implements Converter<BoardDTO,Board> {
+public class BoardConverter implements Converter<BoardDTO, Board> {
     @Override
     public BoardDTO toDto(Board board) {
-        return null;
+        Timestamp createdAt = board.getCreatedAt();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String formatCreatedAt = sdf.format(createdAt);
+
+
+
+        return BoardDTO.builder()
+                .postId(board.getPostId())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .author(board.getAuthor())
+                .createdAt(formatCreatedAt)
+                .build();
     }
 
     @Override
     public Board toEntity(BoardDTO boardDTO) {
-        return null;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        return Board.builder()
+                .postId(boardDTO.getPostId())
+                .title(boardDTO.getTitle())
+                .content(boardDTO.getContent())
+                .author(boardDTO.getAuthor())
+                .createdAt(timestamp)
+                .build();
     }
 
 }

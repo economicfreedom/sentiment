@@ -3,4 +3,10 @@
 <mapper namespace="com.example.sentiment.repository.interfaces.BoardRepository">
 
 
+    <insert id="create">
+        INSERT INTO board(title,content,author) value (#{title},#{content},#{author})
+    </insert>
+    <select id="findAll" resultType="com.example.sentiment.dto.board.BoardDTO">
+        SELECT * FROM board
+    </select>
 </mapper>
