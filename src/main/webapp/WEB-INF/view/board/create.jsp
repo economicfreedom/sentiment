@@ -12,6 +12,7 @@
     function test() {
         let title = document.getElementById('title');
         let content = document.getElementById('content');
+        let author = document.getElementById('author');
 
         if (title.value.length === 0) {
 
@@ -33,15 +34,16 @@
             },
             body: JSON.stringify({
                 title: title.value,
-                content: content.value
+                content: content.value,
+                author : author.value
             })
 
         }).then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
-            }else {
+            } else {
                 alert("글이 작성되었습니다.")
-                location.href='/board/'
+                location.href = '/board/'
             }
 
         })
@@ -67,7 +69,7 @@
         }
 
         .header {
-            background-color: skyblue;
+            background-color: #2196f3;
             padding: 10px;
             text-align: center;
             font-size: 24px;
@@ -83,7 +85,7 @@
         }
 
         .button {
-            background-color: lightblue;
+            background-color: #2196f3;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -93,7 +95,7 @@
         }
 
         .button:hover {
-            background-color: darkblue;
+            background-color: skyblue;
         }
     </style>
 </head>
@@ -101,6 +103,7 @@
 <div class="container">
     <div class="header">글 작성하기</div>
     <input type="text" class="input-field" placeholder="제목을 입력하세요" id="title">
+    <input type="text" class="input-field" placeholder="닉네임을 입력하세요" id="author">
     <textarea class="input-field" placeholder="내용을 입력하세요" rows="10" id="content"></textarea>
     <button type="button" class="button" onclick="test()">글 작성</button>
 </div>

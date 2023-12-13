@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class SentimentDTO {
 
     private int sentimentId;
-    private int board_id;
+    private int boardId;
     private String content;
     private String createdAt;
 

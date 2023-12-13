@@ -6,7 +6,7 @@ import java.util.List;
 @Repository
 public interface CRUDRepositoryInterface<ENTITY>{
 
-    int create(ENTITY dto);
+    int create(ENTITY entity);
 
 
     ENTITY findById(int id);

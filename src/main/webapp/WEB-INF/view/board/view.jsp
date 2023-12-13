@@ -73,7 +73,6 @@
             .catch(error => console.error('Error:', error));
     }
 
-    // 댓글 데이터를 HTML로 변환하여 페이지에 삽입하는 함수
     function renderComments(comments) {
         const commentsContainer = document.querySelector('.comments');
 
@@ -90,11 +89,46 @@
 
     }
 
-    // 페이지 로드 시 데이터를 불러오는 함수 실행
     document.addEventListener('DOMContentLoaded', function () {
         fetchData();
+        getSentiment();
     });
 
+    function getSentiment() {
+
+
+        let id = document.getElementById('id').value;
+
+        fetch('/api-sentiment/get-sentiment/' + id, {
+            method: 'GET',
+
+        })
+
+            .then(response => {
+                return response.json()
+
+            })
+            .then(data => {
+                console.log('data', data)
+                let sentiment = data.content;
+                if (data.content.length <= 0) {
+                    sentiment = "분석된 데이터가 아직 존재하지 않습니다."
+                } else {
+                    sentiment = data.content;
+                }
+
+
+                let s = document.getElementById("sentiment")
+                s.value = sentiment
+                s.style.height = 'auto'
+                s.style.height = ((s.scrollHeight) + 4) + 'px';
+
+
+            })
+            .catch(error => console.error('Error:', error));
+
+
+    }
 
     function update() {
         let id = document.getElementById('id').value;
@@ -125,6 +159,32 @@
 
     }
 
+    function sentimentCreate() {
+        let id = document.getElementById('id').value;
+
+        fetch('/api-sentiment/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                boardId: document.getElementById('id').value,
+            })
+
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+        })
+            .then(data => {
+                console.log(data);
+                location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+
+
+    }
 </script>
 <head>
     <meta charset="UTF-8">
@@ -158,7 +218,7 @@
         }
 
         .button {
-            background-color: #2196f3; /* 색상 변경 */
+            background-color: #2196f3;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -230,9 +290,12 @@
     <div class="post-content">
         <h2>${dto.title}</h2>
         <p>${dto.content}</p>
+        <textarea readonly style="margin-bottom: 3px;border-radius: 10px;resize: none; padding-right: 100px"
+                  id="sentiment"></textarea>
+        <br>
         <button class="button" onclick="update()">수정</button>
         <button class="button" style="background-color: red;" onclick="del()">삭제</button>
-        <button class="button">기타</button>
+        <button class="button" onclick="sentimentCreate()">감정 분석</button>
     </div>
 
     <input type="hidden" id="id" value="${dto.boardId}">

@@ -27,5 +27,10 @@
         FROM comment
         WHERE board_id = #{id}
     </select>
+    <select id="findContentListByBoardId" resultType="java.lang.String">
+        SELECT content
+        FROM comment
+        WHERE board_id = #{boardId}
+    </select>
 
 </mapper>

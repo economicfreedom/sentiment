@@ -89,7 +89,7 @@
 </head>
 <body>
 <header>
-    그린 컴퓨터
+    감정 분석 예제
 </header>
 <table>
     <tr>
@@ -101,8 +101,8 @@
     <c:forEach items="${list}" var="board">
         <tr>
             <td>${board.boardId}</td>
-            <td>${board.title}</td>
-            <td><a href="/board/view/${board.boardId}">${board.content}</a></td>
+            <td>${board.author}</td>
+            <td><a href="/board/view/${board.boardId}">${board.title}</a></td>
             <td>${board.createdAt}</td>
         </tr>
     </c:forEach>

@@ -26,9 +26,10 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
-gpt:
-  model: gpt-3.5-turbo
-  api:
-    key: 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
-    url: https://api.openai.com/v1/chat/completions
 
+
+gpt:
+  model: gpt-3.5-turbo-1106
+  api:
+    key: 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
+    url: https://api.openai.com/v1/chat/completions

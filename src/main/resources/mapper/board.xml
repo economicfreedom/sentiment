@@ -3,17 +3,17 @@
 <mapper namespace="com.example.sentiment.repository.interfaces.BoardRepository">
 
 
-    <insert id="create">
+    <insert id="create" >
         INSERT INTO board(title,content,author) value (#{title},#{content},#{author})
     </insert>
-    <update id="update">
-        UPDATE board SET title = #{title},
-                         content = #{content},
-                         created_at = #{createdAt}
-        WHERE board_id = #{boardId}
+<!--    <update id="update">-->
+<!--        UPDATE board SET title = #{title},-->
+<!--                         content = #{content},-->
+<!--                         created_at = #{createdAt}-->
+<!--        WHERE board_id = #{boardId}-->
 
 
-    </update>
+<!--    </update>-->
     <delete id="deleteById">
         DELETE FROM board
         WHERE board_id = #{id}
