@@ -22,7 +22,7 @@ public class BoardConverter implements Converter<BoardDTO, Board> {
 
 
         return BoardDTO.builder()
-                .postId(board.getPostId())
+                .boardId(board.getBoardId())
                 .title(board.getTitle())
                 .content(board.getContent())
                 .author(board.getAuthor())
@@ -35,7 +35,7 @@ public class BoardConverter implements Converter<BoardDTO, Board> {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         return Board.builder()
-                .postId(boardDTO.getPostId())
+                .boardId(boardDTO.getBoardId())
                 .title(boardDTO.getTitle())
                 .content(boardDTO.getContent())
                 .author(boardDTO.getAuthor())

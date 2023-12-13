@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Builder
 public class BoardDTO {
 
-    private int postId;
+    private int boardId;
     private String title;
     private String content;
     private String author;

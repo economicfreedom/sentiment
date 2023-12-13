@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.sentiment.repository.interfaces.CommentRepository">
+    <insert id="create">
+        INSERT INTO comment(board_id,content)
+        value (#{boardId},#{content})
+
+    </insert>
+    <update id="update">
+        UPDATE comment SET
+                         content = #{content},
+                         created_at = #{createdAt}
+        WHERE comment_id = #{commentId}
+    </update>
+    <delete id="deleteById">
+        DELETE FROM comment
+        WHERE comment_id = #{id}
+    </delete>
+
+
+    <select id="findListById" resultType="com.example.sentiment.repository.model.Comment">
+        SELECT
+            comment_id
+            ,board_id
+            ,content
+            ,created_at
+        FROM comment
+        WHERE board_id = #{id}
+    </select>
+
 </mapper>

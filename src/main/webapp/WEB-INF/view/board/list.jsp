@@ -9,7 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="kr">
-
+<script>
+    function create() {
+        location.href = "/board/create"
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <title>게시판 메인 페이지</title>
@@ -62,7 +66,25 @@
             color: black;
 
         }
+    /* 기존 스타일 유지 */
+        /* ... */
 
+        .write-button {
+            background-color: #2196f3; /* 기본 배경 색상 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* 부드러운 색상 전환 */
+            position: fixed; /* 위치 고정 */
+            bottom: 20px; /* 하단에서 20px */
+            left: 20px; /* 왼쪽에서 20px */
+        }
+
+        .write-button:hover {
+            background-color: #42a5f5; /* 마우스 오버시 색상 변경 */
+        }
     </style>
 </head>
 <body>
@@ -78,14 +100,14 @@
     </tr>
     <c:forEach items="${list}" var="board">
         <tr>
-            <td>${board.postId}</td>
+            <td>${board.boardId}</td>
             <td>${board.title}</td>
-            <td><a href="#">${board.content}</a></td>
+            <td><a href="/board/view/${board.boardId}">${board.content}</a></td>
             <td>${board.createdAt}</td>
         </tr>
     </c:forEach>
 
 </table>
-
+<button onclick="create()" class="write-button">글 작성하기</button>
 </body>
 </html>

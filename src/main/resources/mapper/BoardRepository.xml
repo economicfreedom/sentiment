@@ -6,7 +6,22 @@
     <insert id="create">
         INSERT INTO board(title,content,author) value (#{title},#{content},#{author})
     </insert>
-    <select id="findAll" resultType="com.example.sentiment.dto.board.BoardDTO">
+    <update id="update">
+        UPDATE board SET title = #{title},
+                         content = #{content},
+                         created_at = #{createdAt}
+        WHERE board_id = #{boardId}
+
+
+    </update>
+    <delete id="deleteById">
+        DELETE FROM board
+        WHERE board_id = #{id}
+    </delete>
+    <select id="findAll" resultType="com.example.sentiment.repository.model.Board">
         SELECT * FROM board
+    </select>
+    <select id="findById" resultType="com.example.sentiment.repository.model.Board">
+        SELECT * FROM board WHERE board_id=#{id}
     </select>
 </mapper>

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface CRUDRepositoryInterface<DTO,ENTITY>{
+public interface CRUDRepositoryInterface<ENTITY>{
 
     int create(ENTITY dto);
 
@@ -15,8 +15,10 @@ public interface CRUDRepositoryInterface<DTO,ENTITY>{
     int deleteById(int id);
 
 
-    int update(DTO dto);
+    int update(ENTITY entity);
 
 
-    List<DTO> findAll();
+    List<ENTITY> findAll();
+
+
 }

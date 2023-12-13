@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/board")
 public class BoardController extends CRUDAbstractController<BoardDTO, Board> {
 
-
-
     @Override
     protected String getBasePath() {
         return "board";

@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface BoardRepository extends CRUDRepositoryInterface<BoardDTO, Board> {
+public interface BoardRepository extends CRUDRepositoryInterface<Board> {
     @Override
     int create(Board board);
 
@@ -22,8 +22,8 @@ public interface BoardRepository extends CRUDRepositoryInterface<BoardDTO, Board
     int deleteById(int id);
 
     @Override
-    int update(BoardDTO boardDTO);
+    int update(Board Board);
 
     @Override
-    List<BoardDTO> findAll();
+    List<Board> findAll();
 }

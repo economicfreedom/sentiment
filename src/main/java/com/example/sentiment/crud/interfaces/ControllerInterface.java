@@ -13,6 +13,6 @@ public interface ControllerInterface<DTO> {
     public String createPage(Model model);
 
     
-    public String updatePage(Model model,DTO dto);
+    public String updatePage(Model model,int id);
     
 }

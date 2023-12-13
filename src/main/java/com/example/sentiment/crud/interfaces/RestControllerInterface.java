@@ -12,4 +12,6 @@ public interface RestControllerInterface<DTO> {
 
     ResponseEntity<?> update(DTO dto);
 
+    ResponseEntity<?> findAll();
+
 }

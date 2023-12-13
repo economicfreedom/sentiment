@@ -8,18 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Slf4j
 public abstract class CRUDAbstractService<DTO, ENTITY> implements CRUDInterface<DTO> {
 
 
-    private CRUDRepositoryInterface<DTO, ENTITY> repository;
+    private CRUDRepositoryInterface<ENTITY> repository;
 
     private Converter<DTO, ENTITY> converter;
 
     @Autowired(required = false)
-    public CRUDAbstractService(CRUDRepositoryInterface<DTO, ENTITY> repository, Converter<DTO, ENTITY> converter) {
+    public CRUDAbstractService(CRUDRepositoryInterface<ENTITY> repository, Converter<DTO, ENTITY> converter) {
         this.repository = repository;
         this.converter = converter;
     }
@@ -35,23 +37,34 @@ public abstract class CRUDAbstractService<DTO, ENTITY> implements CRUDInterface<
 
     @Override
     public DTO findById(int id) {
-        return null;
+        ENTITY entity = repository.findById(id);
+        if (entity == null) {
+            throw new IllegalArgumentException("존재 하지 않습니다");
+        }
+
+        return converter.toDto(entity);
     }
 
     @Override
     public int deleteById(int id) {
-        return 0;
+
+        return repository.deleteById(id);
     }
 
     @Override
     public int update(DTO dto) {
-        return 0;
+        ENTITY entity = converter.toEntity(dto);
+
+
+        return repository.update(entity);
     }
 
     @Override
     public List<DTO> findAll() {
-        List<DTO> all = repository.findAll();
-        log.info("내용 : {}",all);
-        return all;
+        List<ENTITY> all = repository.findAll();
+
+        return all.stream()
+                .map(converter::toDto)
+                .collect(Collectors.toList());
     }
 }

@@ -11,12 +11,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Board {
+public class Sentiment {
 
+    private int sentimentId;
     private int boardId;
-    private String title;
     private String content;
-    private String author;
     private Timestamp createdAt;
 
 }
